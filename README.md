@@ -14,7 +14,7 @@ When running in distributed mode default configuration of Redis host at 127.0.0.
 
 Publishing the number of unquie request per minute is controlled by cron, used spring scheduled task for printing the number of unique request at a interver of a minute.
 
-Application supports publising of unique request number to Logs or Kakfa stream, controlled by applcation.properties, publisher possible value logger and kafka
+Application supports publising of unique request number to Logs or Kakfa stream controlled by applcation.properties, publisher possible value logger and kafka
 While running in Kafka publising mode, kafka topic name and boot strap server to be speficied in properties file
 
 ![Screenshot](smatoo.jpg)
