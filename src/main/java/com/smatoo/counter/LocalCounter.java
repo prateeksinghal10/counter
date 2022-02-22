@@ -1,6 +1,6 @@
 package com.smatoo.counter;
 
-import com.smatoo.stats.StatsPublisher;
+import com.smatoo.publisher.StatsPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CounterLocal implements Counter {
+public class LocalCounter implements Counter {
 
-    private static Logger LOG= LoggerFactory.getLogger(CounterLocal.class);
+    private static Logger LOG= LoggerFactory.getLogger(LocalCounter.class);
 
     private ConcurrentHashMap<String, ConcurrentHashMap.KeySetView<Integer, Boolean>> counterCache = new ConcurrentHashMap<>();
 
     private StatsPublisher statsPublisher;
 
-    public CounterLocal(StatsPublisher statsPublisher) {
+    public LocalCounter(StatsPublisher statsPublisher) {
         this.statsPublisher = statsPublisher;
     }
 

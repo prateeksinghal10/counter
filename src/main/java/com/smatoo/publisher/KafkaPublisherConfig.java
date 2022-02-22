@@ -1,8 +1,10 @@
-package com.smatoo.stats;
+package com.smatoo.publisher;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -12,19 +14,17 @@ import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+@ConditionalOnProperty(name = "publisher", havingValue = "kafka")
 @Configuration
-public class StatsConfig {
+public class KafkaPublisherConfig {
+    @Value("${bootstrap.server}")
+    private String bootStrapServer;
 
-    @Bean
-    public StatsPublisher statsPublisher(){
-        return new LoggerStatsPublisher();
-    }
-
-   /* private ProducerFactory<String, Long> producerFactory() {
+    private ProducerFactory<String, Long> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:29092");
+                bootStrapServer);
         configProps.put(
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
@@ -36,11 +36,11 @@ public class StatsConfig {
 
     @Bean
     public KafkaTemplate<String, Long> kafkaTemplate() {
-        return new KafkaTemplate<String,Long>(producerFactory());
+        return new KafkaTemplate<String, Long>(producerFactory());
     }
 
     @Bean
-    public StatsPublisher statsPublisher(KafkaTemplate<String, Long> kafkaTemplate){
+    public StatsPublisher statsPublisher(KafkaTemplate<String, Long> kafkaTemplate) {
         return new KafkaStatsPublisher(kafkaTemplate);
-    }*/
+    }
 }

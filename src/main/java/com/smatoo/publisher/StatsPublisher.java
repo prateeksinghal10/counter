@@ -1,4 +1,4 @@
-package com.smatoo.stats;
+package com.smatoo.publisher;
 
 public interface StatsPublisher {
 

@@ -1,4 +1,4 @@
-package com.smatoo.stats;
+package com.smatoo.publisher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

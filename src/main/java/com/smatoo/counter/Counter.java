@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.time.format.DateTimeFormatter;
 
 public interface Counter {
-    DateTimeFormatter KEY_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy-hh-mm");
+    DateTimeFormatter KEY_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm");
 
     void addCount(int id);
 

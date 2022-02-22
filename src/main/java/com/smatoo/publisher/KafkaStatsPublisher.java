@@ -1,14 +1,16 @@
-package com.smatoo.stats;
+package com.smatoo.publisher;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 
 public class KafkaStatsPublisher implements StatsPublisher {
 
     private Logger LOG = LoggerFactory.getLogger(KafkaStatsPublisher.class);
 
-    private String topicName = "request-stats";
+    @Value("${topic.name}")
+    private String topicName;
 
     private KafkaTemplate<String, Long> kafkaTemplate;
 
